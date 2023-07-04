@@ -1,0 +1,764 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Portfolio Website</title>
+    <style>
+        @import url("https://fonts.googleapis.com/css2?family=Poppins:wght@400;600;700&amp;display=swap");
+        :root {
+            --header-height: 3rem;
+            --font-semi: 600;
+        }
+        :root {
+            --first-color: #4070F4;
+            --second-color: #0E2431;
+        }
+        :root {
+            --body-font: 'Poppins', sans-serif;
+            --big-font-size: 2rem;
+            --h2-font-size: 1.25rem;
+            --normal-font-size: 0.938rem;
+        }
+
+        @media screen and (min-width: 768px) {
+            :root {
+                --big-font-size: 3.5rem;
+                --h2-font-size: 2rem;
+                --normal-font-size: 1rem;
+            }
+        }
+        :root {
+            --mb-1: 0.5rem;
+            --mb-2: 1rem;
+            --mb-3: 1.5rem;
+            --mb-4: 2rem;
+            --mb-5: 2.5rem;
+            --mb-6: 3rem;
+        }
+
+        :root {
+            --z-back: -10;
+            --z-normal: 1;
+            --z-tooltip: 10;
+            --z-fixed: 100;
+        }
+
+        *,
+        ::before,
+        ::after {
+            box-sizing: border-box;
+        }
+
+        html {
+            scroll-behavior: smooth;
+        }
+
+        body {
+            margin: var(--header-height) 0 0 0;
+            font-family: var(--body-font);
+            font-size: var(--normal-font-size);
+            color: var(--second-color);
+        }
+
+        h1,
+        h2,
+        p {
+            margin: 0;
+        }
+
+        ul {
+            margin: 0;
+            padding: 0;
+            list-style: none;
+        }
+
+        a {
+            text-decoration: none;
+        }
+
+        img {
+            max-width: 100%;
+            height: auto;
+            display: block;
+        }
+
+        .section-title {
+            position: relative;
+            font-size: var(--h2-font-size);
+            color: var(--first-color);
+            margin-top: var(--mb-2);
+            margin-bottom: var(--mb-4);
+            text-align: center;
+        }
+
+        .section-title::after {
+            position: absolute;
+            content: "";
+            width: 64px;
+            height: 0.18rem;
+            left: 0;
+            right: 0;
+            margin: auto;
+            top: 2rem;
+            background-color: var(--first-color);
+        }
+
+        .section {
+            padding-top: 3rem;
+            padding-bottom: 2rem;
+        }
+
+        .bd-grid {
+            max-width: 1024px;
+            display: grid;
+            grid-template-columns: 100%;
+            grid-column-gap: 2rem;
+            width: calc(100% - 2rem);
+            margin-left: var(--mb-2);
+            margin-right: var(--mb-2);
+        }
+
+        .l-header {
+            width: 100%;
+            position: fixed;
+            top: 0;
+            left: 0;
+            z-index: var(--z-fixed);
+            background-color: #fff;
+            box-shadow: 0 1px 4px rgba(146, 161, 176, .15);
+        }
+
+        .nav {
+            height: var(--header-height);
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            font-weight: var(--font-semi);
+        }
+
+        @media screen and (max-width: 768px) {
+            .nav__menu {
+                position: fixed;
+                top: var(--header-height);
+                right: -100%;
+                width: 80%;
+                height: 100%;
+                padding: 2rem;
+                background-color: var(--second-color);
+                transition: .5s;
+            }
+        }
+
+        .nav__item {
+            margin-bottom: var(--mb-4);
+        }
+
+        .nav__link {
+            position: relative;
+            color: #fff;
+        }
+
+        .nav__link:hover {
+            position: relative;
+        }
+
+        .nav__link:hover::after {
+            position: absolute;
+            content: "";
+            width: 100%;
+            height: 0.18rem;
+            left: 0;
+            top: 2rem;
+            background-color: var(--first-color);
+        }
+
+        .nav__logo {
+            color: black;
+            font-size: 35px;
+            font-weight:900;
+        }
+
+        .nav__toggle {
+            color: var(--second-color);
+            font-size: 1.5rem;
+            cursor: pointer;
+        }
+
+        .active::after {
+            position: absolute;
+            content: "";
+            width: 100%;
+            height: 0.18rem;
+            left: 0;
+            top: 2rem;
+            background-color: var(--first-color);
+        }
+
+
+        .show {
+            right: 0;
+        }
+
+        .home {
+            height: calc(100vh - 3rem);
+            row-gap: 1rem;
+        }
+
+        .home__data {
+            align-self: center;
+        }
+
+        .home__title {
+            font-size: var(--big-font-size);
+            margin-bottom: var(--mb-5);
+            margin-top: 150px;
+        }
+
+        .home__title-color {
+            color: var(--first-color);
+        }
+
+        .home__social {
+            display: flex;
+            flex-direction: column;
+        }
+
+        .home__social-icon {
+            width: max-content;
+            margin-bottom: var(--mb-2);
+            font-size: 1.5rem;
+            color: var(--second-color);
+        }
+
+        .home__social-icon:hover {
+            color: var(--first-color);
+        }
+
+        #tushar_img{
+            margin-top: -480px;
+            margin-left: 630px;
+            height: 500px;
+            width: 500px;
+            /* border: 2px solid black; */
+        }
+
+        .button {
+            display: inline-block;
+            background-color: var(--first-color);
+            color: #fff;
+            padding: .75rem 2.5rem;
+            font-weight: var(--font-semi);
+            border-radius: .5rem;
+        }
+
+        .button:hover {
+            box-shadow: 0 10px 36px rgba(0, 0, 0, .15);
+        }
+
+        .about__container {
+            row-gap: 2rem;
+            text-align: center;
+        }
+
+        .about__subtitle {
+            margin-bottom: var(--mb-2);
+        }
+
+        .about__img {
+            justify-self: center;
+            width: 400px;
+            border: 3px solid black;
+            padding: 3px;
+        }
+
+        .skills__container {
+            row-gap: 2rem;
+            text-align: center;
+        }
+
+        .skills__subtitle {
+            margin-bottom: var(--mb-2);
+        }
+
+        .skills__text {
+            margin-bottom: var(--mb-4);
+        }
+
+        .skills__data {
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            position: relative;
+            font-weight: var(--font-semi);
+            padding: .5rem 1rem;
+            margin-bottom: var(--mb-4);
+            border-radius: .5rem;
+            box-shadow: 0 4px 25px rgba(14, 36, 49, .15);
+        }
+
+        .skills__icon {
+            font-size: 2rem;
+            margin-right: var(--mb-2);
+            color: var(--first-color);
+        }
+
+        .skills__names {
+            display: flex;
+            align-items: center;
+        }
+
+        .skills__bar {
+            position: absolute;
+            left: 0;
+            bottom: 0;
+            background-color: var(--first-color);
+            height: .25rem;
+            border-radius: .5rem;
+            z-index: var(--z-back);
+        }
+
+        .skills__html {
+            width: 95%;
+        }
+
+        .skills__css {
+            width: 85%;
+        }
+
+        .skills__js {
+            width: 65%;
+        }
+
+        .skills__ux {
+            width: 75%;
+        }
+
+        .skills__img {
+            width: 400px;
+            height: 280px;
+            border: 3px solid black;
+            padding: 3px;
+            margin-left: 100px;
+        }
+
+        .work__container {
+            row-gap: 2rem;
+        }
+
+        .work__img {
+            box-shadow: 0 4px 25px rgba(14, 36, 49, .15);
+            border-radius: .5rem;
+            overflow: hidden;
+        }
+
+        .work__img img {
+            transition: 1s;
+            cursor: pointer;
+        }
+
+        .work__img img:hover {
+            transform: scale(1.1);
+        }
+
+        .contact__input {
+            width: 100%;
+            font-size: var(--normal-font-size);
+            font-weight: var(--font-semi);
+            padding: 1rem;
+            border-radius: .5rem;
+            border: 1.5px solid var(--second-color);
+            outline: none;
+            margin-bottom: var(--mb-4);
+        }
+
+        .contact__button {
+            /* display: block; */
+            width: 350px;
+            border: none;
+            outline: none;
+            font-size: 20px;
+            cursor: pointer;
+            margin-left: 4px;
+        }
+
+        .footer {
+            background-color: var(--second-color);
+            color: #fff;
+            text-align: center;
+            font-weight: var(--font-semi);
+            padding: 2rem 0;
+        }
+
+        .footer__title {
+            font-size: 2rem;
+            margin-bottom: 30px;
+        }
+
+        .footer__social {
+            border: 2px solid white;
+            height: 60px;
+            background-color: white;
+            color: black;
+            margin-bottom: 40px;
+            text-decoration: none;
+            justify-content: space-around;
+        }
+        .footer__social img{
+            display: inline;
+            height: 20px;
+            width: 20px;
+            margin-top: 15px;
+            margin-bottom: -4px;
+        }
+        .footer__social a{
+            color: black;
+            margin-right: 40px;
+            font-size: 18px;
+        }
+
+        .footer__icon {
+            font-size: 1.5rem;
+            color: #fff;
+            margin: 0 var(--mb-2)
+        }
+        #tusharabout{
+            filter: invert();
+        }
+
+        @media screen and (min-width: 768px) {
+            body {
+                margin: 0;
+            }
+
+            .section {
+                padding-top: 4rem;
+                padding-bottom: 3rem;
+            }
+
+            .section-title {
+                margin-bottom: var(--mb-6);
+            }
+
+            .section-title::after {
+                width: 80px;
+                top: 3rem;
+            }
+
+            .nav {
+                height: calc(var(--header-height) + 1rem);
+            }
+
+            .nav__list {
+                display: flex;
+                padding-top: 0;
+            }
+
+            .nav__item {
+                margin-left: var(--mb-6);
+                margin-bottom: 0;
+            }
+
+            .nav__toggle {
+                display: none;
+            }
+
+            .nav__link {
+                color: var(--second-color);
+            }
+
+            .home {
+                height: 100vh;
+            }
+
+            .home__data {
+                align-self: flex-end;
+            }
+
+            .home__social {
+                padding-top: 0;
+                padding-bottom: 2.5rem;
+                flex-direction: row;
+                align-self: flex-end;
+            }
+
+            .home__social-icon {
+                margin-bottom: 0;
+                margin-right: var(--mb-4);
+            }
+
+            
+
+            .about__container,
+            .skills__container {
+                grid-template-columns: repeat(2, 1fr);
+                align-items: center;
+                text-align: initial;
+            }
+            
+            .about__img img {
+                width: 300px;
+                display: none;
+            }
+
+            .work__container {
+                grid-template-columns: repeat(3, 1fr);
+                grid-template-rows: repeat(2, 1fr);
+                column-gap: 2rem;
+            }
+
+            .contact__form {
+                width: 360px;
+            }
+
+            .contact__container {
+                justify-items: center;
+            }
+        }
+        @media screen and (min-width: 1024px) {
+            .bd-grid {
+                margin-left: auto;
+                margin-right: auto;
+            }
+
+            .home__img {
+                right: 10%;
+            }
+        }
+        
+
+        @media (max-width:940px) {
+
+            #tushar_img{
+                display: none;
+            }
+            .skills__img{
+                display: none;
+            }
+            .home__data{
+                margin: auto;
+                /* margin-left: -10px; */
+                margin-top: -50px;
+                width: 370px;
+                text-align: center;
+            }
+            .button{
+                text-align: center;
+            }
+            #about{
+                margin-top: -400px;
+            }
+            #contact{
+                margin-top: -50px;
+            }
+            .contact__button button{
+                text-align: center;
+            }
+        }
+        .footer__social{
+            height: 70px;
+        }
+        .footer__social a{
+            font-size: 10px;
+            margin-right:22px;
+        }
+
+        .phone{
+            filter:grayscale();
+        }
+    </style>
+</head>
+
+<body>
+
+    <header class="l-header">
+        <nav class="nav bd-grid">
+            <div>
+                <a href="#" class="nav__logo">PORTFOLIO</a>
+            </div>
+
+            <div class="nav__menu" id="nav-menu">
+                <ul class="nav__list">
+                    <li class="nav__item"><a href="#home" class="nav__link active">Home</a></li>
+                    <li class="nav__item"><a href="#about" class="nav__link">About</a></li>
+                    <li class="nav__item"><a href="#skills" class="nav__link">Skills</a></li>
+                    <li class="nav__item"><a href="#contact" class="nav__link">Contact</a></li>
+                </ul>
+            </div>
+
+            <div class="nav__toggle" id="nav-toggle">
+                <i class='bx bx-menu'></i>
+            </div>
+        </nav>
+    </header>
+
+    <main class="l-main">
+
+        <section class="home bd-grid" id="home">
+            <div class="home__data">
+                <h1 class="home__title">Hi,<br>I'am <span class="home__title-color">Tushar Padihar</span><br>Front-End Developer</h1>
+
+                <a href="#contact" class="button">Contact</a>
+            </div>
+
+            <div class="home__social">
+                <a href="" class="home__social-icon"><i class='bx bxl-linkedin'></i></a>
+                <a href="" class="home__social-icon"><i class='bx bxl-behance'></i></a>
+                <a href="" class="home__social-icon"><i class='bx bxl-github'></i></a>
+            </div>
+
+            <div class="home__img">
+                <img src="TUSHAR_PADIHAR.jpeg" alt="" id="tushar_img">
+            </div>
+        </section>
+
+        <section class="about section " id="about">
+            <h2 class="section-title">About</h2>
+
+            <div class="about__container bd-grid">
+                <div>
+                    <img src="about.jpg" alt="" class="about__img">
+                </div>
+
+                <div>
+                    <p class="about__text">Innovative Front-End developer. Proficient in HTMl, CSS, JAVASCRIPT plus modern libraries and frameworks. Want to obtain a responsible position that best utilizes my skills and provides opportunities to grow my technical skills which would enable me to grow while fulfilling organizational goals.</p>
+                </div>
+            </div>
+        </section>
+
+        <section class="skills section" id="skills">
+            <h2 class="section-title">Skills</h2>
+
+            <div class="skills__container bd-grid">
+                <div class="skillcontainer">
+                    <h2 class="skills__subtitle">Profesional Skills</h2>
+                    
+                    <div class="skills__data">
+                        <div class="skills__names">
+                            <i class='bx bxl-html5 skills__icon'></i>
+                            <span class="skills__name">C++</span>
+                        </div>
+                        <div class="skills__bar skills__html">
+
+                        </div>
+                        <div>
+                            <span class="skills__percentage">90%</span>
+                        </div>
+                    </div>
+
+                    <div class="skills__data">
+                        <div class="skills__names">
+                            <i class='bx bxl-html5 skills__icon'></i>
+                            <span class="skills__name">Java</span>
+                        </div>
+                        <div class="skills__bar skills__html">
+
+                        </div>
+                        <div>
+                            <span class="skills__percentage">70%</span>
+                        </div>
+                    </div>
+
+
+                    <div class="skills__data">
+                        <div class="skills__names">
+                            <i class='bx bxl-html5 skills__icon'></i>
+                            <span class="skills__name">MySQL</span>
+                        </div>
+                        <div class="skills__bar skills__html">
+
+                        </div>
+                        <div>
+                            <span class="skills__percentage">70%</span>
+                        </div>
+                    </div>
+
+                    <div class="skills__data">
+                        <div class="skills__names">
+                            <i class='bx bxl-html5 skills__icon'></i>
+                            <span class="skills__name">HTML5</span>
+                        </div>
+                        <div class="skills__bar skills__html">
+
+                        </div>
+                        <div>
+                            <span class="skills__percentage">90%</span>
+                        </div>
+                    </div>
+                    <div class="skills__data">
+                        <div class="skills__names">
+                            <i class='bx bxl-css3 skills__icon'></i>
+                            <span class="skills__name">CSS3</span>
+                        </div>
+                        <div class="skills__bar skills__css">
+
+                        </div>
+                        <div>
+                            <span class="skills__percentage">90%</span>
+                        </div>
+                    </div>
+                    <div class="skills__data">
+                        <div class="skills__names">
+                            <i class='bx bxl-javascript skills__icon'></i>
+                            <span class="skills__name">JAVASCRIPT</span>
+                        </div>
+                        <div class="skills__bar skills__js">
+
+                        </div>
+                        <div>
+                            <span class="skills__percentage">80%</span>
+                        </div>
+                    </div>
+                    <div class="skills__data">
+                        <div class="skills__names">
+                            <i class='bx bxs-paint skills__icon'></i>
+                            <span class="skills__name">React</span>
+                        </div>
+                        <div class="skills__bar skills__ux">
+
+                        </div>
+                        <div>
+                            <span class="skills__percentage">70%</span>
+                        </div>
+                    </div>
+                </div>
+
+                <div>
+                    <img src="skill.png" alt="" class="skills__img">
+                </div>
+            </div>
+        </section>
+<!-- 
+        <section class="contact section" id="contact">
+            <h2 class="section-title">Contact</h2>
+
+            <div class="contact__container bd-grid">
+                <form action="" class="contact__form">
+                    <input type="text" placeholder="Name" class="contact__input">
+                    <input type="mail" placeholder="Email" class="contact__input">
+                    <textarea name="" id="" cols="0" rows="10" class="contact__input"></textarea>
+                    <input type="button" value="Enter" class="contact__button button" id="contact_btn">
+                </form>
+            </div>
+        </section>
+    </main> -->
+
+    <footer class="footer">
+        <section class="contact section" id="contact">
+        <p class="footer__title">Tushar Padihar</p>
+        <div class="footer__social">
+                <a href="https://mail.google.com/mail/u/0/?tab=rm&ogbl#inbox">&#9993 mrpadihar@gmail.com</a>
+                <a href="#" class="phone">&#128241 +91 6264325343</a>
+                <a href="#" class="phone">&#128205 Dewas, India</a>
+                <a href="https://www.linkedin.com/in/tushar-padihar-18386a20a?lipi=urn%3Ali%3Apage%3Ad_flagship3_profile_view_base_contact_details%3BMWeuakFKQjag6%2F%2BVS7l6%2Bw%3D%3D">
+                    <img src="ld.png" alt="">
+                    linkedin.com/in/tushar-padihar-</a>
+        </div>
+        <p>&#169; 2023 copyright all right reserved</p>
+        </section>
+
+    </footer>
+</body>
+
+</html>
