@@ -828,14 +828,17 @@ img {
 
 .dark{
         color: white;
-        background-image: linear-gradient(to right, black,black );
+        /* background-image: linear-gradient(to right, black,black );  */
+            background-image: linear-gradient(to right,#121212,#121212 );
+
 }
 
 .navdarkmode{
         /* background-image: linear-gradient(to right, white,rgb(246, 222, 246) ); */
-        background-image: linear-gradient(to right, black,black );
+            background-image: linear-gradient(to right,#121212,#121212 );
+/*         background-image: linear-gradient(to right, black,black ); */
 
-        box-shadow: 0px 8px 8px rgb(19, 19, 19);
+        box-shadow: 0px 8px 8px rgb(25, 25, 25);
         /* box-shadow: 0px 5px 5px rgb(246, 222, 246) ; */
 }
 
